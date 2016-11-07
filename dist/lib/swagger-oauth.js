@@ -89,7 +89,7 @@ function handleLogin() {
   popup = popupDialog.find('ul.api-popup-scopes').empty();
   for (i = 0; i < scopes.length; i ++) {
     scope = scopes[i];
-    str = '<li><input type="checkbox" id="scope_' + i + '" scope="' + scope.scope +'" oauthtype="' + scope.OAuthSchemeKey +'"/>' + '<label for="scope_' + i + '">' + scope.scope ;
+    str = '<li><input type="checkbox" checked="checked id="scope_' + i + '" scope="' + scope.scope +'" oauthtype="' + scope.OAuthSchemeKey +'"/>' + '<label for="scope_' + i + '">' + scope.scope ;
     if (scope.description) {
       if ($.map(auths, function(n, i) { return i; }).length > 1) //if we have more than one scheme, display schemes
 	    str += '<br/><span class="api-scope-desc">' + scope.description + ' ('+ scope.OAuthSchemeKey+')' +'</span>';
