@@ -218,6 +218,28 @@ templates['main'] = template({"1":function(container,depth0,helpers,partials,dat
     + "    </h4>\n    </div>\n</div>\n";
 },"useData":true});
 templates['oauth2'] = template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<p>Authorization URL: "
+    + ((stack1 = (helpers.sanitize || (depth0 && depth0.sanitize) || helpers.helperMissing).call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.authorizationUrl : depth0),{"name":"sanitize","hash":{},"data":data})) != null ? stack1 : "")
+    + "</p>";
+},"3":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<p>Token URL: "
+    + ((stack1 = (helpers.sanitize || (depth0 && depth0.sanitize) || helpers.helperMissing).call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.tokenUrl : depth0),{"name":"sanitize","hash":{},"data":data})) != null ? stack1 : "")
+    + "</p>";
+},"5":function(container,depth0,helpers,partials,data) {
+    return "        <p>Please input username and password for password flow authorization</p>\n        <fieldset>\n            <div><label>Username: <input class=\"oauth-username\" type=\"text\" name=\"username\"></label></div>\n            <div><label>Password: <input class=\"oauth-password\" type=\"password\" name=\"password\"></label></div>\n        </fieldset>\n";
+},"7":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "        <p>Setup client authentication."
+    + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.requireClientAuthenticaiton : depth0),{"name":"if","hash":{},"fn":container.program(8, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</p>\n        <fieldset>\n            <div><label>Type:\n                <select class=\"oauth-client-authentication-type\" name=\"client-authentication-type\">\n                    <option value=\"none\" selected>None or other</option>\n                    <option value=\"basic\">Basic auth</option>\n                    <option value=\"request-body\">Request body</option>\n                </select>\n            </label></div>\n            <div class=\"oauth-client-authentication\" hidden>\n                <div><label>ClientId: <input class=\"oauth-client-id\" type=\"text\" name=\"client-id\"></label></div>\n                <div><label>Secret: <input class=\"oauth-client-secret\" type=\"text\" name=\"client-secret\"></label></div>\n            </div>\n        </fieldset>\n";
+},"8":function(container,depth0,helpers,partials,data) {
+    return "(Required)";
+},"10":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing;
 
   return "            <li>\n                <input class=\"oauth-scope\" type=\"checkbox\" data-scope=\""
@@ -229,9 +251,9 @@ templates['oauth2'] = template({"1":function(container,depth0,helpers,partials,d
     + "</label><br/>\n                <span class=\"api-scope-desc\">"
     + ((stack1 = (helpers.escape || (depth0 && depth0.escape) || alias2).call(alias1,(depth0 != null ? depth0.description : depth0),{"name":"escape","hash":{},"data":data})) != null ? stack1 : "")
     + "\n"
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.OAuthSchemeKey : depth0),{"name":"if","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.OAuthSchemeKey : depth0),{"name":"if","hash":{},"fn":container.program(11, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "                </span>\n            </li>\n";
-},"2":function(container,depth0,helpers,partials,data) {
+},"11":function(container,depth0,helpers,partials,data) {
     var stack1;
 
   return "                        ("
@@ -240,16 +262,21 @@ templates['oauth2'] = template({"1":function(container,depth0,helpers,partials,d
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing;
 
-  return "<div>\n    <h3 class=\"auth__title\">Select OAuth2.0 Scopes</h3>\n    <p>"
+  return "<div>\n    <h3 class=\"auth__title\">OAuth2.0</h3>\n    <p>"
     + ((stack1 = (helpers.sanitize || (depth0 && depth0.sanitize) || alias2).call(alias1,(depth0 != null ? depth0.description : depth0),{"name":"sanitize","hash":{},"data":data})) != null ? stack1 : "")
-    + "</p>\n    <p>Scopes are used to grant an application different levels of access to data on behalf of the end user. Each API may declare one or more scopes.\n        <a href=\"#\">Learn how to use</a>\n    </p>\n    <p><strong> "
-    + ((stack1 = (helpers.escape || (depth0 && depth0.escape) || alias2).call(alias1,(depth0 != null ? depth0.appName : depth0),{"name":"escape","hash":{},"data":data})) != null ? stack1 : "")
-    + " </strong> API requires the following scopes. Select which ones you want to grant to Swagger UI.</p>\n    <p>Authorization URL: "
-    + ((stack1 = (helpers.sanitize || (depth0 && depth0.sanitize) || alias2).call(alias1,(depth0 != null ? depth0.authorizationUrl : depth0),{"name":"sanitize","hash":{},"data":data})) != null ? stack1 : "")
-    + "</p>\n    <p>flow: "
+    + "</p>\n    "
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.authorizationUrl : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n    "
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.tokenUrl : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n    <p>flow: "
     + ((stack1 = (helpers.escape || (depth0 && depth0.escape) || alias2).call(alias1,(depth0 != null ? depth0.flow : depth0),{"name":"escape","hash":{},"data":data})) != null ? stack1 : "")
-    + "</p>\n    <ul class=\"api-popup-scopes\">\n"
-    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.scopes : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</p>\n"
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.isPasswordFlow : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.clientAuthentication : depth0),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "    <p><strong> "
+    + ((stack1 = (helpers.escape || (depth0 && depth0.escape) || alias2).call(alias1,(depth0 != null ? depth0.appName : depth0),{"name":"escape","hash":{},"data":data})) != null ? stack1 : "")
+    + " </strong> API requires the following scopes. Select which ones you want to grant to Swagger UI.</p>\n    <p>Scopes are used to grant an application different levels of access to data on behalf of the end user. Each API may declare one or more scopes.\n        <a href=\"#\">Learn how to use</a>\n    </p>\n    <ul class=\"api-popup-scopes\">\n"
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.scopes : depth0),{"name":"each","hash":{},"fn":container.program(10, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "    </ul>\n</div>";
 },"useData":true});
 templates['operation'] = template({"1":function(container,depth0,helpers,partials,data) {
@@ -3657,7 +3684,7 @@ SwaggerClient.prototype.buildFromSpec = function (response) {
       for(var ext in securityDefinition) {
         helpers.extractExtensions(ext, securityDefinition);
         if (ext === 'scopes') {
-          var scopes = securityDefinition[ext];
+          var scopes = _.cloneDeep(securityDefinition[ext]);
           if(typeof scopes === 'object') {
             scopes.vendorExtensions = {};
             for (var s in scopes) {
@@ -22411,7 +22438,13 @@ SwaggerUi.Views.AuthView = Backbone.View.extend({
         else if(auth.get('type') === 'oauth2' && flow && (flow === 'application')) {
             dets = auth.attributes;
             window.swaggerUi.tokenName = dets.tokenName || 'access_token';
-            this.clientCredentialsFlow(scopes, dets.tokenUrl, window.OAuthSchemeKey);
+            this.clientCredentialsFlow(scopes, dets, window.OAuthSchemeKey);
+            return;
+        }
+        else if(auth.get('type') === 'oauth2' && flow && (flow === 'password')) {
+            dets = auth.attributes;
+            window.swaggerUi.tokenName = dets.tokenName || 'access_token';
+            this.passwordFlow(scopes, dets, window.OAuthSchemeKey);
             return;
         }
         else if(auth.get('grantTypes')) {
@@ -22448,17 +22481,40 @@ SwaggerUi.Views.AuthView = Backbone.View.extend({
     },
 
     // taken from lib/swagger-oauth.js
-    clientCredentialsFlow: function (scopes, tokenUrl, OAuthSchemeKey) {
-        var params = {
-            'client_id': clientId,
-            'client_secret': clientSecret,
+    clientCredentialsFlow: function (scopes, oauth, OAuthSchemeKey) {
+        this.accessTokenRequest(scopes, oauth, OAuthSchemeKey, 'client_credentials');
+    },
+
+    passwordFlow: function (scopes, oauth, OAuthSchemeKey) {
+        this.accessTokenRequest(scopes, oauth, OAuthSchemeKey, 'password', {
+            'username': oauth.username,
+            'password': oauth.password
+        });
+    },
+
+    accessTokenRequest: function (scopes, oauth, OAuthSchemeKey, grantType, params) {
+        params = $.extend({}, {
             'scope': scopes.join(' '),
-            'grant_type': 'client_credentials'
-        };
+            'grant_type': grantType
+        }, params);
+
+        var headers= {};
+
+        switch (oauth.clientAuthenticationType) {
+            case 'basic':
+                headers.Authorization = 'Basic ' + btoa(oauth.clientId + ':' + oauth.clientSecret);
+                break;
+            case 'request-body':
+                params.client_id = oauth.clientId;
+                params.client_secret = oauth.clientSecret;
+                break;
+        }
+
         $.ajax({
-            url : tokenUrl,
+            url : oauth.tokenUrl,
             type: 'POST',
             data: params,
+            headers: headers,
             success: function (data)
             {
                 onOAuthComplete(data, OAuthSchemeKey);
@@ -22469,7 +22525,6 @@ SwaggerUi.Views.AuthView = Backbone.View.extend({
             }
         });
     }
-
 });
 
 'use strict';
@@ -22754,10 +22809,17 @@ SwaggerUi.Views.MainView = Backbone.View.extend({
 
 SwaggerUi.Models.Oauth2Model = Backbone.Model.extend({
     defaults: {
-        scopes: {}
+        scopes: {},
+        isPasswordFlow: false,
+        clientAuthenticationType: 'none'
     },
 
-    initialize: function () {
+    initialize: function (attributes) {
+        if (attributes.flow) {
+            this.set('isPasswordFlow', attributes.flow === 'password');
+            this.set('requireClientAuthentication', attributes.flow === 'application');
+            this.set('clientAuthentication', attributes.flow === 'password' || attributes.flow === 'application');
+        }
         this.on('change', this.validate);
     },
 
@@ -22774,6 +22836,16 @@ SwaggerUi.Models.Oauth2Model = Backbone.Model.extend({
 
     validate: function () {
       var valid = false;
+      if (this.get('isPasswordFlow') &&
+          (!this.get('username'))) {
+          return false;
+      }
+
+      if (this.get('clientAuthenticationType') in ['basic', 'request-body'] &&
+          (!this.get('clientId'))) {
+          return false;
+      }
+
       var scp = this.get('scopes');
       var idx =  _.findIndex(scp, function (o) {
          return o.checked === true;
@@ -22797,10 +22869,19 @@ SwaggerUi.Models.Oauth2Model = Backbone.Model.extend({
 
 SwaggerUi.Views.Oauth2View = Backbone.View.extend({
     events: {
-        'change .oauth-scope': 'scopeChange'
+        'change .oauth-scope': 'scopeChange',
+        'change .oauth-username': 'setUsername',
+        'change .oauth-password': 'setPassword',
+        'change .oauth-client-authentication-type': 'setClientAuthenticationType',
+        'change .oauth-client-id': 'setClientId',
+        'change .oauth-client-secret': 'setClientSecret'
     },
 
     template: Handlebars.templates.oauth2,
+
+    cls: {
+        error: 'error'
+    },
 
     render: function () {
         this.$el.html(this.template(this.model.toJSON()));
@@ -22813,6 +22894,58 @@ SwaggerUi.Views.Oauth2View = Backbone.View.extend({
         var scope = $(e.target).data('scope');
 
         this.model.setScopes(scope, val);
+    },
+
+    setUsername: function (e) {
+        var val= $(e.target).val();
+        this.model.set('username', val);
+        if (val) {
+            $(e.target).removeClass(this.cls.error);
+        }
+    },
+
+    setPassword: function (e) {
+        this.model.set('password', $(e.target).val());
+    },
+
+    setClientAuthenticationType: function (e) {
+        var type = $(e.target).val();
+        var $el = this.$el;
+        this.model.set('clientAuthenticationType', type);
+
+        switch(type) {
+            case 'none':
+                $el.find('.oauth-client-authentication').hide();
+                break;
+            case 'basic':
+            case 'request-body':
+                $el.find('.oauth-client-id').removeClass(this.cls.error);
+                $el.find('.oauth-client-authentication').show();
+                break;
+        }
+    },
+
+    setClientId: function (e) {
+        var val = $(e.target).val();
+        this.model.set('clientId', val);
+        if (val) {
+            $(e.target).removeClass(this.cls.error);
+        }
+    },
+
+    setClientSecret: function (e) {
+        this.model.set('clientSecret', $(e.target).val());
+        $(e.target).removeClass('error');
+    },
+
+    highlightInvalid: function () {
+        if (!this.model.get('username')) {
+            this.$el.find('.oauth-username').addClass(this.cls.error);
+        }
+
+        if (!this.model.get('clientId')) {
+            this.$el.find('.oauth-client-id').addClass(this.cls.error);
+        }
     }
 });
 'use strict';
